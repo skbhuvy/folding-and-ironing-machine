@@ -1,0 +1,71 @@
+// define pin name
+#define dir 1      // Direction
+#define pwrA 2     // Power for Motor A (Left plate)
+#define pwrB 4     // Power for Motor B (Right plate)
+#define pwrC 7     // Power for Motor C (Top plate)
+
+// constants
+const int buttonPin = 8;   // Push button pin
+
+// variables
+int buttonState = 0;
+
+// delay values calculated from motor speed (550 RPM)
+int delaymillsA  = 55;   // 180° forward for Motor A
+int delaymillsAr = 55;   // 180° backward for Motor A
+
+int delaymillsB  = 55;   // 180° forward for Motor B
+int delaymillsBr = 55;   // 180° backward for Motor B
+
+int delaymillsC  = 55;   // 180° forward for Motor C
+int delaymillsCr = 55;   // 180° backward for Motor C
+
+int delaymillsD  = 100;  // Small delay between motors
+
+void setup() {
+  pinMode(pwrA, OUTPUT);
+  pinMode(pwrB, OUTPUT);
+  pinMode(pwrC, OUTPUT);
+  pinMode(dir, OUTPUT);
+
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+
+  if (buttonState == HIGH) {
+
+    // Motor A – Left plate
+    digitalWrite(pwrA, HIGH);
+    digitalWrite(dir, HIGH);      // Forward
+    delay(delaymillsA);
+    digitalWrite(dir, LOW);       // Backward
+    delay(delaymillsAr);
+    digitalWrite(pwrA, LOW);
+    delay(delaymillsD);
+
+    // Motor B – Right plate
+    digitalWrite(pwrB, HIGH);
+    digitalWrite(dir, HIGH);      // Forward
+    delay(delaymillsB);
+    digitalWrite(dir, LOW);       // Backward
+    delay(delaymillsBr);
+    digitalWrite(pwrB, LOW);
+    delay(delaymillsD);
+
+    // Motor C – Top plate
+    digitalWrite(pwrC, HIGH);
+    digitalWrite(dir, HIGH);      // Forward
+    delay(delaymillsC);
+    digitalWrite(dir, LOW);       // Backward
+    delay(delaymillsCr);
+    digitalWrite(pwrC, LOW);
+    delay(delaymillsD);
+
+  } else {
+    digitalWrite(pwrA, LOW);
+    digitalWrite(pwrB, LOW);
+    digitalWrite(pwrC, LOW);
+  }
+}
