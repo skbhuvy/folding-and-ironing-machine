@@ -50,5 +50,6 @@ To safely toggle the iron's power state without snagging the fabric:
 
 1. **Clone the Repo:** `git clone https://github.com/yourusername/robo-press-fold.git`
 2. **Python Environment:** Install dependencies via `pip install opencv-python ultralytics pyserial`.
+yet to be uploaded
 3. **Arduino Firmware:** Upload the `.ino` files found in `/firmware` to your microcontroller.
 4. **Calibration:** Run `calibrate.py` to set your Homography anchor points and motor scaling factors.
